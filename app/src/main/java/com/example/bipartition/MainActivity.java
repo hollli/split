@@ -12,21 +12,26 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     EditText mText;
     TextView next_text;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button mButton = (Button) findViewById(R.id.button);
         mText = findViewById(R.id.editText2);
-        String myLine = String.valueOf(mText.getText());
-        int size = myLine.length();
-        int help = size/2;
-        mButton.setOnClickListener( new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                next_text.setText(myLine.substring(1,help) +" "+ myLine.substring(size));
-            }
+        next_text = findViewById(R.id.next_string);
+
+        mButton.setOnClickListener(v -> {
+//        String.valueOf(mText.getText())
+            String myLine = mText.getText().toString();
+
+            int size = myLine.length();
+            int help = size/2+1;
+            String finalMyLine = myLine;
+            String result = finalMyLine.substring(0,help) +"\n༼ つ ◕_◕ ༽つ\n"+ finalMyLine.substring(help,size);
+
+            next_text.setText(result);
+//                myLine.substring(1,help) +" "+ myLine.substring(size)
         });
     }
 }
